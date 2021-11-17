@@ -54,7 +54,7 @@ for(j in 1:500){
 
 set.seed(1231*j)
 
-pred.site=d.site[sort(sample(nrow(d.site),10,replace=F)),]
+pred.site=d.site[sort(sample(nrow(d.site),10,replace=F)),] #For n=10 prediction locations
 
 samp_last=Data.ann[441:462,]
 samp_last2=samp_last[!samp_last$Site%in%pred.site$site_name,]
@@ -108,7 +108,7 @@ Fac.loc= Pred_loc_data[,c(7,8,21)]
 loc.No=which(samp_last$Site%in%Pred_loc_data$Site)
 dist.mat= dmat[loc.No,loc.No]/max(dmat)
 
-z_new=tail(Z,10)
+z_new=tail(Z,10) # For n=10 prediction locations
 
 pred.joint=matrix(ncol=2,nrow=100)
 predY1=matrix(ncol=nrow(Fac.loc),nrow=100)
