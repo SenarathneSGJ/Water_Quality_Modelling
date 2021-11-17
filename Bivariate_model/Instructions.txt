@@ -1,1 +1,1 @@
-
+Use 'Main_func.R' to run the model
