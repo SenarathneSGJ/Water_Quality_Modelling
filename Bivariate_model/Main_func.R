@@ -82,15 +82,15 @@ sqrt.OMEGA_all <- t(svd.OMEGA_all$v %*%
 Z <- t(solve(sqrt.OMEGA_all, t(Z_K)))
 
 #Estimate the parameters of the model using MLE
-Theta.init <- c(40,-13,0.1,-3,10,-10,0.1,0.1,1,1,1,1,3,3,0,.1,.1,.1,.1,.1,.1) #Initial values for nlm function
+Theta.init <- c(40,-13,0.1,-3,10,-10,0.1,0.1,1,1,1,1,3,3,0,.1,.1,.1,.1,.1,.1) #Initial values for nlm function (Bivariate model with Y1 and Y2)
 
 lp.approx <- nlm(p=Theta.init,samp_no=samp_no,dataX=log(Data.ann2[,c(7,8,21)]),dist.Y=dist.Y,dataY=Data.ann2[,c(6,14)],z=Z, f=NLog_Like, hessian=TRUE,iterlim=400)
 min_lp=lp.approx$minimum
 
 Post_mean=lp.approx$estimate
 
-Theta.init1 <- c(40,-13,0.01,-3,1,1,3,-.1,-.1,-.1) #Initial values for nlm function
-Theta.init2 <- c(10,-10,0.1,0.1,1,1,3,.1,.1,.1) #Initial values for nlm function
+Theta.init1 <- c(40,-13,0.01,-3,1,1,3,-.1,-.1,-.1) #Initial values for nlm function (Univariate model with Y1)
+Theta.init2 <- c(10,-10,0.1,0.1,1,1,3,.1,.1,.1) #Initial values for nlm function (Univariate model with Y2)
 
 lp.approx2 <- nlm(p=Theta.init1,samp_no=samp_no,dataX=log(Data.ann2[,c(7,8,21)]),dist.Y=dist.Y,dataY=data.frame(Data.ann2[,c(6)]),z=Z, f=NLog_Like_Res1, hessian=TRUE,iterlim=400)
 min_lp1=lp.approx2$minimum
